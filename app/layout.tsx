@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/app-sidebar';
+import { ThemeSyncWrapper } from '@/components/theme-sync-wrapper';
 
 const inter = Inter({
   variable: "--font-inter",
@@ -30,17 +31,18 @@ export default function RootLayout({
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <SidebarProvider>
-            <AppSidebar/>
-            <main>
-              <SidebarTrigger/>
-              {children}
-            </main>
-          </SidebarProvider>
+          <ThemeSyncWrapper>
+            <SidebarProvider>
+              <AppSidebar/>
+              <main className="p-8 w-full">
+                <SidebarTrigger/>
+                {children}
+              </main>
+            </SidebarProvider>
+          </ThemeSyncWrapper>
         </ThemeProvider>
       </body>
     </html>
