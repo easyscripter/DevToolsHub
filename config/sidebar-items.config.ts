@@ -4,8 +4,8 @@ import { LayoutDashboard, Settings, Wrench } from "lucide-react";
 
 export const sidebarItems: SidebarItem[] = [
 	{
-		title: "Workspace",
-		href: ROUTES.WORKSPACE,
+		title: "Workspaces",
+		href: ROUTES.WORKSPACES,
 		icon: LayoutDashboard
 	},
 	{

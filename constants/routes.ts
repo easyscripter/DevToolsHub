@@ -1,5 +1,6 @@
 export const ROUTES = {
 	SETTINGS: '/settings',
-	WORKSPACE: '/workspace/:workspaceId',
+	WORKSPACES: '/workspaces',
+	WORKSPACE: '/workspaces/:workspaceId',
 	TOOLS: '/tools',
 } as const;
