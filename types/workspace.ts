@@ -10,5 +10,5 @@ export type WorkspacesStore = {
 	workspaces: Workspace[];
 	createWorkspace: (workspace: Workspace) => void;
 	updateWorkspace: (workspace: Workspace) => void;
-	deleteWorkspace: (workspace: Workspace) => void;
+	deleteWorkspace: (id: string) => void;
 }

@@ -16,9 +16,9 @@ export const useWorkspacesStore = create<WorkspacesStore>()(
 					workspaces: state.workspaces.map((w) => w.id === workspace.id ? workspace : w),
 				}))
 			},
-			deleteWorkspace: (workspace: Workspace) => {
+			deleteWorkspace: (id: string) => {
 				set((state) => ({
-					workspaces: state.workspaces.filter((w) => w.id !== workspace.id),
+					workspaces: state.workspaces.filter((w) => w.id !== id),
 				}))
 			},
 		}),
