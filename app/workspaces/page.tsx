@@ -10,13 +10,14 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Workspace } from '@/types/workspace';
 import { Button } from '@/components/ui/button';
 import DeleteDialog from '@/components/delete-dialog';
+import { useRouter } from 'next/navigation';
 
 export default function Workspaces() {
 	const { workspaces, createWorkspace, deleteWorkspace } = useWorkspacesStore();
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
 	const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 	const [workspaceIdToDelete, setWorkspaceIdToDelete] = useState<string | null>(null);
-
+	const router = useRouter();
 	const getIconComponent = (iconName: string) => {
 		const iconOption = workspaceIcons.find(icon => icon.value === iconName);
 		return iconOption ? iconOption.icon : FolderIcon;
@@ -49,6 +50,7 @@ export default function Workspaces() {
 									setWorkspaceIdToDelete(workspace.id);
 									setIsDeleteDialogOpen(true);
 								}}
+								onClick={() => router.push(`/workspaces/${workspace.id}`)}
 							/>
 						))}
 						<Card 

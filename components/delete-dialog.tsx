@@ -21,7 +21,7 @@ export default function DeleteDialog({
 	onCancel,
 }: DeleteDialogProps) {
 	return (
-		<Dialog open={open}>
+		<Dialog open={open} onOpenChange={onCancel}>
 			<DialogContent>
 				<DialogHeader>
 					<DialogTitle>{title}</DialogTitle>

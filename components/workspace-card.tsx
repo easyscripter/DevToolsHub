@@ -14,6 +14,7 @@ type WorkspaceCardProps = {
 	name: string;
 	description: string;
 	onDelete: (id: string) => void;
+	onClick: (id: string) => void;
 };
 
 export default function WorkspaceCard({
@@ -22,9 +23,13 @@ export default function WorkspaceCard({
 	name,
 	description,
 	onDelete,
+	onClick,
 }: WorkspaceCardProps) {
 	return (
-		<Card className='gap-4 w-50 min-h-64 p-4 flex flex-col'>
+		<Card
+			className='gap-4 w-50 min-h-64 p-4 flex flex-col cursor-pointer'
+			onClick={() => onClick(id)}
+		>
 			<CardHeader className='flex flex-col items-center gap-4 flex-shrink-0'>
 				{icon}
 				<CardTitle className='text-center font-bold text-lg'>{name}</CardTitle>
@@ -37,7 +42,10 @@ export default function WorkspaceCard({
 					size='sm'
 					variant='destructive'
 					className='w-full'
-					onClick={() => onDelete(id)}
+					onClick={e => {
+						e.stopPropagation();
+						onDelete(id);
+					}}
 				>
 					<TrashIcon className='w-4 h-4' />
 				</Button>
