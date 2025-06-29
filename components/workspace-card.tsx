@@ -24,7 +24,7 @@ export default function WorkspaceCard({
 	onDelete,
 }: WorkspaceCardProps) {
 	return (
-		<Card className='gap-4 w-50 h-62 p-4 flex flex-col'>
+		<Card className='gap-4 w-50 min-h-64 p-4 flex flex-col'>
 			<CardHeader className='flex flex-col items-center gap-4 flex-shrink-0'>
 				{icon}
 				<CardTitle className='text-center font-bold text-lg'>{name}</CardTitle>
