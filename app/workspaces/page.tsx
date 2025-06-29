@@ -6,11 +6,11 @@ import { useWorkspacesStore } from '@/store/workspaces';
 import React, { useState } from 'react';
 import { FolderIcon, PlusIcon } from 'lucide-react';
 import { workspaceIcons } from '@/config';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Workspace } from '@/types/workspace';
 import { Button } from '@/components/ui/button';
 import DeleteDialog from '@/components/delete-dialog';
 import { useRouter } from 'next/navigation';
+import AddNewCard from '@/components/add-new-card';
 
 export default function Workspaces() {
 	const { workspaces, createWorkspace, deleteWorkspace } = useWorkspacesStore();
@@ -53,19 +53,11 @@ export default function Workspaces() {
 								onClick={() => router.push(`/workspaces/${workspace.id}`)}
 							/>
 						))}
-						<Card 
-							className='w-50 min-h-64 bg-white/10 backdrop-blur-md border-white/20 cursor-pointer flex flex-col justify-center items-center gap-4 hover:bg-white/20 transition-all duration-200'
+						<AddNewCard
+							title='Create new workspace'
+							icon={<PlusIcon className='w-10 h-10' />}
 							onClick={() => setIsDialogOpen(true)}
-						>
-							<CardHeader className='flex flex-col items-center gap-4'>
-								<PlusIcon className='w-10 h-10' />
-							</CardHeader>
-							<CardContent className='flex flex-col items-center gap-4'>
-								<p className='text-center'>
-									Create a new workspace
-								</p>
-							</CardContent>
-						</Card>
+						/>
 					</>
 				) : (
 					<div className='flex flex-col gap-8'>
