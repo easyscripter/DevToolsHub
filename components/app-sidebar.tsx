@@ -5,8 +5,10 @@ import Image from 'next/image';
 import logo from "@/public/assets/logo.png";
 import { sidebarItems } from '@/config';
 import { usePathname } from 'next/navigation';
+import { useTranslate } from '@/hooks/use-translate';
 
 export function AppSidebar() {
+	const { t } = useTranslate();
 	const pathname = usePathname();
 
 	const isActive = (href: string) => pathname === href;
@@ -24,7 +26,7 @@ export function AppSidebar() {
 							<SidebarMenuButton isActive={isActive(item.href)} asChild>
 								<a href={item.href}>
 									<item.icon />
-									<span className='text-sm font-medium'>{item.title}</span>
+									<span className='text-sm font-medium'>{t(item.title)}</span>
 								</a>
 							</SidebarMenuButton>
 						</SidebarMenuItem>

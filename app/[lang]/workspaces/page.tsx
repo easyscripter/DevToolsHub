@@ -11,8 +11,10 @@ import { Button } from '@/components/ui/button';
 import DeleteDialog from '@/components/delete-dialog';
 import { useRouter } from 'next/navigation';
 import AddNewCard from '@/components/add-new-card';
+import { useTranslate } from '@/hooks/use-translate';
 
 export default function Workspaces() {
+	const { t } = useTranslate();
 	const { workspaces, createWorkspace, deleteWorkspace } = useWorkspacesStore();
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
 	const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
@@ -31,8 +33,8 @@ export default function Workspaces() {
 	return (
 		<div className='flex flex-col gap-6'>
 			<div className='flex flex-col gap-2'>
-				<h1 className='text-3xl font-bold mt-4'>Workspaces</h1>
-				<p className='text-muted-foreground'>Manage your workspaces</p>
+				<h1 className='text-3xl font-bold mt-4'>{t('Workspaces.title')}</h1>
+				<p className='text-muted-foreground'>{t('Workspaces.description')}</p>
 			</div>
 			<div className='flex gap-4 w-full flex-wrap'>
 				{workspaces.length > 0 ? (
@@ -54,21 +56,21 @@ export default function Workspaces() {
 							/>
 						))}
 						<AddNewCard
-							title='Create new workspace'
+							title={t('Workspaces.createWorkspace')}
 							icon={<PlusIcon className='w-10 h-10' />}
 							onClick={() => setIsDialogOpen(true)}
 						/>
 					</>
 				) : (
 					<div className='flex flex-col gap-8'>
-						<p className='text-muted-foreground'>No workspaces found</p>
+						<p className='text-muted-foreground'>{t('Workspaces.workspaceNotFound')}</p>
 						<Button 
 							size='sm' 
 							onClick={() => setIsDialogOpen(true)}
 							className='w-fit'
 						>
 							<PlusIcon className='w-4 h-4 mr-2' />
-							Create Workspace
+							{t('Workspaces.createWorkspace')}
 						</Button>
 					</div>
 				)}
@@ -79,11 +81,11 @@ export default function Workspaces() {
 				onCreateWorkspace={handleCreateWorkspace}
 			/>
 			<DeleteDialog
-				title='Delete Workspace'
-				description='Are you sure you want to delete this workspace?'
+				title={t('Workspaces.deleteWorkspaceDialog.title')}
+				description={t('Workspaces.deleteWorkspaceDialog.description')}
 				open={isDeleteDialogOpen}
-				okButtonText='Delete'
-				cancelButtonText='Cancel'
+				okButtonText={t('Workspaces.deleteWorkspaceDialog.delete')}
+				cancelButtonText={t('Workspaces.deleteWorkspaceDialog.cancel')}
 				onOk={() => {
 					deleteWorkspace(workspaceIdToDelete!);
 					setIsDeleteDialogOpen(false);

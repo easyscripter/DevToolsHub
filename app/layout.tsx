@@ -29,21 +29,21 @@ export default function RootLayout({
       <body
         className={`${inter.variable} antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <ThemeSyncWrapper>
-            <SidebarProvider>
-              <AppSidebar/>
-              <main className="p-8 w-full">
-                <SidebarTrigger/>
-                {children}
-              </main>
-            </SidebarProvider>
-          </ThemeSyncWrapper>
-        </ThemeProvider>
+          <ThemeProvider
+            attribute="class"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <ThemeSyncWrapper>
+              <SidebarProvider>
+                <AppSidebar/>
+                <main className="p-8 w-full">
+                  <SidebarTrigger/>
+                  {children}
+                </main>
+              </SidebarProvider>
+            </ThemeSyncWrapper>
+          </ThemeProvider>
       </body>
     </html>
   );

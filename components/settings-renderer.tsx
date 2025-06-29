@@ -1,7 +1,10 @@
+'use client'
+
 import { AppSettings, SettingType } from '@/types'
 import { SettingCategory } from './setting-category'
 import { SettingItem } from './setting-item'
 import { SettingControl } from './setting-control'
+import { useTranslate } from '@/hooks/use-translate'
 
 type SettingsRendererProps = {
   settings: AppSettings
@@ -9,6 +12,8 @@ type SettingsRendererProps = {
 }
 
 export function SettingsRenderer({ settings, onSettingChange }: SettingsRendererProps) {
+  const { t } = useTranslate();
+  
   const groupedSettings = Object.entries(settings).reduce((acc, [categoryKey, categorySettings]) => {
     const categoryName = categoryKey.charAt(0).toUpperCase() + categoryKey.slice(1)
     
@@ -28,8 +33,8 @@ export function SettingsRenderer({ settings, onSettingChange }: SettingsRenderer
           {categoryItems.map(({ key, setting }) => (
             <SettingItem
               key={key}
-              title={setting.title}
-              description={setting.description}
+              title={t(setting.title)}
+              description={t(setting.description)}
             >
               <SettingControl
                 setting={setting}

@@ -22,6 +22,7 @@ import { Workspace } from '@/types/workspace';
 import { workspaceIcons } from '@/config';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { useTranslate } from '@/hooks/use-translate';
 
 type WorkspaceDialogProps = {
 	open: boolean;
@@ -34,6 +35,7 @@ export default function WorkspaceDialog({
 	onOpenChange,
 	onCreateWorkspace
 }: WorkspaceDialogProps) {
+	const { t } = useTranslate();
 	const [formData, setFormData] = useState({
 		name: '',
 		description: '',
@@ -63,14 +65,14 @@ export default function WorkspaceDialog({
 			<DialogContent>
 				<form onSubmit={handleSubmit}>
 					<DialogHeader>
-						<DialogTitle>Create Workspace</DialogTitle>
+						<DialogTitle>{t('Workspaces.createWorkspaceDialog.title')}</DialogTitle>
 						<DialogDescription>
-							Create a new workspace to organize your tools.
+							{t('Workspaces.createWorkspaceDialog.description')}
 						</DialogDescription>
 					</DialogHeader>
 					<div className='grid mt-5 gap-4'>
 						<div className='grid gap-3'>
-							<Label htmlFor='name'>Name</Label>
+							<Label htmlFor='name'>{t('Workspaces.createWorkspaceDialog.nameLabel')}</Label>
 							<Input
 								id='name'
 								name='name'
@@ -82,7 +84,7 @@ export default function WorkspaceDialog({
 									}))
 								}
 								maxLength={20}
-								placeholder="Enter workspace name..."
+								placeholder={t('Workspaces.createWorkspaceDialog.namePlaceholder')}
 								required
 							/>
 							<div className='flex justify-end items-center text-xs text-muted-foreground'>
@@ -92,7 +94,7 @@ export default function WorkspaceDialog({
 							</div>
 						</div>
 						<div className='grid gap-3'>
-							<Label htmlFor='description'>Description</Label>
+							<Label htmlFor='description'>{t('Workspaces.createWorkspaceDialog.descriptionLabel')}</Label>
 							<Textarea
 								id='description'
 								name='description'
@@ -104,7 +106,7 @@ export default function WorkspaceDialog({
 									}))
 								}
 								maxLength={50}
-								placeholder="Enter workspace description..."
+								placeholder={t('Workspaces.createWorkspaceDialog.descriptionPlaceholder')}
 								className="resize-none"
 								required
 							/>
@@ -115,7 +117,7 @@ export default function WorkspaceDialog({
 							</div>
 						</div>
 						<div className='grid gap-3'>
-							<Label htmlFor='icon'>Icon</Label>
+							<Label htmlFor='icon'>{t('Workspaces.createWorkspaceDialog.iconLabel')}</Label>
 							<Select
 								value={formData.icon}
 								onValueChange={value =>
@@ -123,7 +125,7 @@ export default function WorkspaceDialog({
 								}
 							>
 								<SelectTrigger>
-									<SelectValue placeholder='Select an icon' />
+									<SelectValue placeholder={t('Workspaces.createWorkspaceDialog.iconPlaceholder')} />
 								</SelectTrigger>
 								<SelectContent>
 									{workspaceIcons.map(iconOption => (
@@ -142,7 +144,7 @@ export default function WorkspaceDialog({
 						</div>
 					</div>
 					<DialogFooter>
-						<Button type='submit' disabled={!isFormValid}>Create</Button>
+						<Button type='submit' disabled={!isFormValid}>{t('Workspaces.createWorkspaceDialog.create')}</Button>
 					</DialogFooter>
 				</form>
 			</DialogContent>

@@ -4,12 +4,14 @@ import React from 'react';
 import { useParams } from 'next/navigation';
 import { useWorkspacesStore } from '@/store/workspaces';
 import InlineEditField from '@/components/inline-edit-field';
+import { useTranslate } from '@/hooks/use-translate';
 
 type WorkspaceParams = {
 	workspaceId: string;
 };
 
 export default function Workspace() {
+	const { t } = useTranslate();
 	const { workspaceId } = useParams<WorkspaceParams>();
 	const { workspaces, updateWorkspace } = useWorkspacesStore();
 
@@ -34,7 +36,7 @@ export default function Workspace() {
 	};
 
 	if (!workspace) {
-		return <div>Workspace not found</div>;
+		return <div>{t('Workspaces.workspaceNotFound')}</div>;
 	}
 
 	return (
@@ -44,7 +46,7 @@ export default function Workspace() {
 					<InlineEditField
 						value={workspace.name}
 						onSave={handleUpdateName}
-						placeholder='Enter workspace name...'
+						placeholder={t('Workspaces.createWorkspaceDialog.namePlaceholder')}
 						maxLength={20}
 						className='text-3xl font-bold'
 					/>
@@ -53,7 +55,7 @@ export default function Workspace() {
 					<InlineEditField
 						value={workspace.description}
 						onSave={handleUpdateDescription}
-						placeholder='Enter workspace description...'
+						placeholder={t('Workspaces.createWorkspaceDialog.descriptionPlaceholder')}
 						maxLength={50}
 						className='text-muted-foreground'
 					/>
