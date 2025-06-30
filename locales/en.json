@@ -2,6 +2,7 @@
 	"Settings": {
 		"title": "Settings",
 		"description": "Manage your application preferences",
+		"General": "General",
 		"theme": {
 			"title": "Theme",
 			"description": "Choose your preferred theme for the interface",

@@ -11,10 +11,11 @@ import { Button } from '@/components/ui/button';
 import DeleteDialog from '@/components/delete-dialog';
 import { useRouter } from 'next/navigation';
 import AddNewCard from '@/components/add-new-card';
-import { useTranslate } from '@/hooks/use-translate';
+import { useTranslations } from 'next-intl';
 
 export default function Workspaces() {
-	const { t } = useTranslate();
+	const workspacesTranslations = useTranslations('Workspaces');
+	const deleteWorkspaceDialogTranslations = useTranslations('Workspaces.deleteWorkspaceDialog');
 	const { workspaces, createWorkspace, deleteWorkspace } = useWorkspacesStore();
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
 	const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
@@ -33,8 +34,8 @@ export default function Workspaces() {
 	return (
 		<div className='flex flex-col gap-6'>
 			<div className='flex flex-col gap-2'>
-				<h1 className='text-3xl font-bold mt-4'>{t('Workspaces.title')}</h1>
-				<p className='text-muted-foreground'>{t('Workspaces.description')}</p>
+				<h1 className='text-3xl font-bold mt-4'>{workspacesTranslations('title')}</h1>
+				<p className='text-muted-foreground'>{workspacesTranslations('description')}</p>
 			</div>
 			<div className='flex gap-4 w-full flex-wrap'>
 				{workspaces.length > 0 ? (
@@ -56,21 +57,21 @@ export default function Workspaces() {
 							/>
 						))}
 						<AddNewCard
-							title={t('Workspaces.createWorkspace')}
+							title={workspacesTranslations('createWorkspace')}
 							icon={<PlusIcon className='w-10 h-10' />}
 							onClick={() => setIsDialogOpen(true)}
 						/>
 					</>
 				) : (
 					<div className='flex flex-col gap-8'>
-						<p className='text-muted-foreground'>{t('Workspaces.workspaceNotFound')}</p>
+						<p className='text-muted-foreground'>{workspacesTranslations('workspaceNotFound')}</p>
 						<Button 
 							size='sm' 
 							onClick={() => setIsDialogOpen(true)}
 							className='w-fit'
 						>
 							<PlusIcon className='w-4 h-4 mr-2' />
-							{t('Workspaces.createWorkspace')}
+							{workspacesTranslations('createWorkspace')}
 						</Button>
 					</div>
 				)}
@@ -81,11 +82,11 @@ export default function Workspaces() {
 				onCreateWorkspace={handleCreateWorkspace}
 			/>
 			<DeleteDialog
-				title={t('Workspaces.deleteWorkspaceDialog.title')}
-				description={t('Workspaces.deleteWorkspaceDialog.description')}
+				title={deleteWorkspaceDialogTranslations('title')}
+				description={deleteWorkspaceDialogTranslations('description')}
 				open={isDeleteDialogOpen}
-				okButtonText={t('Workspaces.deleteWorkspaceDialog.delete')}
-				cancelButtonText={t('Workspaces.deleteWorkspaceDialog.cancel')}
+				okButtonText={deleteWorkspaceDialogTranslations('delete')}
+				cancelButtonText={deleteWorkspaceDialogTranslations('cancel')}
 				onOk={() => {
 					deleteWorkspace(workspaceIdToDelete!);
 					setIsDeleteDialogOpen(false);

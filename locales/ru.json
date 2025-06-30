@@ -2,6 +2,7 @@
 	"Settings": {
 		"title": "Настройки",
 		"description": "Управление настройками приложения",
+		"General": "Общие",
 		"theme": {
 			"title": "Тема",
 			"description": "Выберите предпочтительную тему для интерфейса",
@@ -36,7 +37,7 @@
 			"namePlaceholder": "Введите название рабочего пространства...",
 			"descriptionLabel": "Описание",
 			"descriptionPlaceholder": "Введите описание рабочего пространства...",
-			"icon": "Иконка",
+			"iconLabel": "Иконка",
 			"iconPlaceholder": "Выберите иконку...",
 			"create": "Создать"
 		},

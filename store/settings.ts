@@ -6,26 +6,26 @@ import { LOCALES, THEMES } from '@/constants'
 const defaultSettings: AppSettings = {
   general: {
     theme: {
-      title: 'Settings.theme.title',
-      description: 'Settings.theme.description',
+      title: 'theme.title',
+      description: 'theme.description',
       value: THEMES.SYSTEM,
       category: 'general',
       controlType: 'select',
       options: [
-        { label: 'Settings.theme.options.light', value: THEMES.LIGHT },
-        { label: 'Settings.theme.options.dark', value: THEMES.DARK },
-        { label: 'Settings.theme.options.system', value: THEMES.SYSTEM }
+        { label: 'theme.options.light', value: THEMES.LIGHT },
+        { label: 'theme.options.dark', value: THEMES.DARK },
+        { label: 'theme.options.system', value: THEMES.SYSTEM }
       ]
     },
     language: {
-      title: 'Settings.language.title',
-      description: 'Settings.language.description',
+      title: 'language.title',
+      description: 'language.description',
       value: LOCALES.EN,
       category: 'general',
       controlType: 'select',
       options: [
-        { label: 'Settings.language.options.en', value: LOCALES.EN },
-        { label: 'Settings.language.options.ru', value: LOCALES.RU }
+        { label: 'language.options.en', value: LOCALES.EN },
+        { label: 'language.options.ru', value: LOCALES.RU }
       ]
     }
   }

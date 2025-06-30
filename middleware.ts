@@ -1,15 +1,8 @@
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
-import { ROUTES } from './constants'
+import createMiddleware from "next-intl/middleware";
+import { routing } from "./config";
 
-export function middleware(request: NextRequest) {
-  if (request.nextUrl.pathname === '/') {
-    return NextResponse.redirect(new URL(ROUTES.WORKSPACES, request.url))
-  }
-  
-  return NextResponse.next()
-}
+export default createMiddleware(routing);
 
 export const config = {
-  matcher: '/',
-} 
+	matcher: '/((?!api|trpc|_next|_vercel|.*\\..*).*)'
+}

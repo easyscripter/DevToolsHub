@@ -6,7 +6,7 @@ import { Switch } from '@/components/ui/switch'
 import { Input } from '@/components/ui/input'
 import { Slider } from '@/components/ui/slider'
 import { Textarea } from '@/components/ui/textarea'
-import { useTranslate } from '@/hooks/use-translate'
+import { useTranslations } from 'next-intl'
 
 type SettingControlProps<T> = {
   setting: SettingType<T>
@@ -15,8 +15,7 @@ type SettingControlProps<T> = {
 }
 
 export function SettingControl<T>({ setting, value, onChange }: SettingControlProps<T>) {
-  const { t } = useTranslate();
-  
+  const settingsTranslations = useTranslations('Settings');
   const renderControl = () => {
     switch (setting.controlType) {
       case 'select':
@@ -28,7 +27,7 @@ export function SettingControl<T>({ setting, value, onChange }: SettingControlPr
             <SelectContent>
               {setting.options?.map((option) => (
                 <SelectItem key={String(option.value)} value={String(option.value)}>
-                  {t(option.label)}
+                  {settingsTranslations(option.label)}
                 </SelectItem>
               ))}
             </SelectContent>
