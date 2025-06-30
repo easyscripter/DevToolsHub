@@ -1,21 +1,21 @@
-import { SidebarItem } from "@/types";
+import { SidebarItem } from '@/types';
 import { ROUTES } from '@/constants';
-import { LayoutDashboard, Settings, Wrench } from "lucide-react";
+import { LayoutDashboard, Settings, Wrench } from 'lucide-react';
 
 export const sidebarItems: SidebarItem[] = [
 	{
-		title: "Workspaces",
+		title: 'workspaces',
 		href: ROUTES.WORKSPACES,
-		icon: LayoutDashboard
+		icon: LayoutDashboard,
 	},
 	{
-		title: "Tools",
+		title: 'tools',
 		href: ROUTES.TOOLS,
-		icon: Wrench
+		icon: Wrench,
 	},
 	{
-		title: "Settings",
+		title: 'settings',
 		href: ROUTES.SETTINGS,
-		icon: Settings
-	}
-]
+		icon: Settings,
+	},
+];

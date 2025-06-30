@@ -1,6 +1,7 @@
-import { THEMES } from "@/constants"
+import { LOCALES, THEMES } from "@/constants"
 
 export type Theme = (typeof THEMES)[keyof typeof THEMES]
+export type LocaleType = (typeof LOCALES)[keyof typeof LOCALES]
 
 export type SettingControlType = 'select' | 'switch' | 'input' | 'textarea' | 'slider'
 
@@ -24,6 +25,7 @@ export type SettingType<T> = {
 
 export type GeneralSettings = {
   theme: SettingType<Theme>
+  language: SettingType<LocaleType>
 }
 
 export type AppSettings = {

@@ -1,9 +1,12 @@
+'use client'
+
 import { SettingType } from '@/types'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Switch } from '@/components/ui/switch'
 import { Input } from '@/components/ui/input'
 import { Slider } from '@/components/ui/slider'
 import { Textarea } from '@/components/ui/textarea'
+import { useTranslations } from 'next-intl'
 
 type SettingControlProps<T> = {
   setting: SettingType<T>
@@ -12,6 +15,7 @@ type SettingControlProps<T> = {
 }
 
 export function SettingControl<T>({ setting, value, onChange }: SettingControlProps<T>) {
+  const settingsTranslations = useTranslations('Settings');
   const renderControl = () => {
     switch (setting.controlType) {
       case 'select':
@@ -23,7 +27,7 @@ export function SettingControl<T>({ setting, value, onChange }: SettingControlPr
             <SelectContent>
               {setting.options?.map((option) => (
                 <SelectItem key={String(option.value)} value={String(option.value)}>
-                  {option.label}
+                  {settingsTranslations(option.label)}
                 </SelectItem>
               ))}
             </SelectContent>

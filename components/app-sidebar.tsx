@@ -4,10 +4,13 @@ import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarHead
 import Image from 'next/image';
 import logo from "@/public/assets/logo.png";
 import { sidebarItems } from '@/config';
-import { usePathname } from 'next/navigation';
+import { usePathname, useParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 export function AppSidebar() {
 	const pathname = usePathname();
+	const { locale } = useParams();
+	const sidebarTranslations = useTranslations('Sidebar');
 
 	const isActive = (href: string) => pathname === href;
 
@@ -22,9 +25,9 @@ export function AppSidebar() {
 						{sidebarItems.map((item) => (
 							<SidebarMenuItem className='list-none font-sans' key={item.title}>
 							<SidebarMenuButton isActive={isActive(item.href)} asChild>
-								<a href={item.href}>
+								<a href={`/${locale}${item.href}`}>
 									<item.icon />
-									<span className='text-sm font-medium'>{item.title}</span>
+									<span className='text-sm font-medium'>{sidebarTranslations(item.title)}</span>
 								</a>
 							</SidebarMenuButton>
 						</SidebarMenuItem>

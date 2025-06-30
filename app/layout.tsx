@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/providers/theme-provider";
-import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
-import { AppSidebar } from '@/components/app-sidebar';
-import { ThemeSyncWrapper } from '@/components/theme-sync-wrapper';
 
 const inter = Inter({
   variable: "--font-inter",
@@ -29,21 +25,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <ThemeSyncWrapper>
-            <SidebarProvider>
-              <AppSidebar/>
-              <main className="p-8 w-full">
-                <SidebarTrigger/>
-                {children}
-              </main>
-            </SidebarProvider>
-          </ThemeSyncWrapper>
-        </ThemeProvider>
+        {children}
       </body>
     </html>
   );

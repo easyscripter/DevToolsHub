@@ -1,0 +1,52 @@
+{
+	"Settings": {
+		"title": "Settings",
+		"description": "Manage your application preferences",
+		"General": "General",
+		"theme": {
+			"title": "Theme",
+			"description": "Choose your preferred theme for the interface",
+			"options": {
+				"light": "Light",
+				"dark": "Dark",
+				"system": "System"
+			}
+		},
+		"language": {
+			"title": "Language",
+			"description": "Choose your preferred language",
+			"options": {
+				"en": "English",
+				"ru": "Russian"
+			}
+		}
+	},
+	"Sidebar": {
+		"workspaces": "Workspaces",
+		"tools": "Tools",
+		"settings": "Settings"
+	},
+	"Workspaces": {
+		"title": "Workspaces",
+		"description": "Manage your workspaces",
+		"createWorkspace": "Create Workspace",
+		"createWorkspaceDialog": {
+			"title": "Create Workspace",
+			"description": "Create a new workspace to organize your tools.",
+			"nameLabel": "Name",
+			"namePlaceholder": "Enter workspace name...",
+			"descriptionLabel": "Description",
+			"descriptionPlaceholder": "Enter workspace description...",
+			"iconLabel": "Icon",
+			"iconPlaceholder": "Select an icon...",
+			"create": "Create"
+		},
+		"deleteWorkspaceDialog": {
+			"title": "Delete Workspace",
+			"description": "Are you sure you want to delete this workspace?",
+			"delete": "Delete",
+			"cancel": "Cancel"
+		},
+		"workspaceNotFound": "Workspace not found"
+	}
+}
