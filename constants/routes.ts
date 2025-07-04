@@ -3,4 +3,5 @@ export const ROUTES = {
 	WORKSPACES: '/workspaces',
 	WORKSPACE: '/workspaces/:workspaceId',
 	TOOLS: '/tools',
+	TOOL: '/tools/:toolId',
 } as const;

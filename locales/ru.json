@@ -48,5 +48,29 @@
 			"cancel": "Отмена"
 		},
 		"workspaceNotFound": "Рабочее пространство не найдено"
+	},
+	"Tools": {
+		"title": "Тулзы",
+		"description": "Здесь вы можете найти тулзы для ваших рабочих пространств.",
+		"uploadTool": "Загрузить тулзу",
+		"uploadToolLabel": "Также вы можете загрузить свою тулзу по кнопке ниже",
+		"searchToolsPlaceholder": "Поиск тулзов...",
+		"uploadToolDialog": {
+			"title": "Загрузить тулзу",
+			"description": "Загрузите свою тулзу в виде zip файла. Архив должен содержать файлы main.js, manifest.json, readme.md . Архив не должен превышать 10 МБ",
+			"zipFileLabel": "Zip файл:",
+			"zipFilePlaceholder": "Выберите zip файл...",
+			"zipFileError": "Пожалуйста, выберите zip файл",
+			"zipFileSizeError": "Размер zip файла должен быть меньше 10MB",
+			"fileSelected": "Файл выбран",
+			"dragDropOrClick": "Перетащите файл сюда или нажмите для выбора",
+			"dropFileHere": "Отпустите файл здесь",
+			"invalidFileType": "Неверный тип файла. Пожалуйста, выберите ZIP файл.",
+			"uploading": "Загрузка...",
+			"uploadSuccess": "Тулза загружена успешно",
+			"uploadError": "Не удалось загрузить тулзу",
+			"upload": "Загрузить",
+			"cancel": "Отмена"
+		}
 	}
 }
