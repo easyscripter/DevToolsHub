@@ -55,6 +55,12 @@
 		"uploadTool": "Upload Tool",
 		"uploadToolLabel": "Also you can upload your own tool by clicking the button below",
 		"searchToolsPlaceholder": "Search tools...",
+		"all": "All",
+		"active": "Active",
+		"inactive": "Inactive",
+		"run": "Run",
+		"noToolsFound": "No tools found matching your search.",
+		"noToolsYet": "No tools uploaded yet. Upload your first tool to get started!",
 		"uploadToolDialog": {
 			"title": "Upload Tool",
 			"description": "Download your tool in the form of a ZIP file. The archive should contain files Main.js, manifest.json, readme.md. The archive should not exceed 10 MB",
