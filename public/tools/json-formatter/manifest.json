@@ -1,0 +1,10 @@
+{
+	"id": "json-formatter",
+	"name": "JSON Formatter",
+	"description": "Format and validate JSON data with syntax highlighting",
+	"version": "1.0.0",
+	"author": "DevTools Hub",
+	"icon": "/assets/tools-icons/json-file.png",
+	"entrypoint": "/tools/json-formatter/index.html",
+	"category": "development"
+} 

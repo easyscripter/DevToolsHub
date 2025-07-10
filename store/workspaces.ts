@@ -1,25 +1,27 @@
-import { create } from "zustand";
-import { Workspace, WorkspacesStore } from "@/types/workspace";
+import { create } from 'zustand';
+import { Workspace, WorkspacesStore } from '@/types/workspace';
 import { persist } from 'zustand/middleware';
 
 export const useWorkspacesStore = create<WorkspacesStore>()(
 	persist(
-		(set) => ({
+		set => ({
 			workspaces: [],
 			createWorkspace: (workspace: Workspace) => {
-				set((state) => ({
+				set(state => ({
 					workspaces: [...state.workspaces, workspace],
-				}))
+				}));
 			},
 			updateWorkspace: (workspace: Workspace) => {
-				set((state) => ({
-					workspaces: state.workspaces.map((w) => w.id === workspace.id ? workspace : w),
-				}))
+				set(state => ({
+					workspaces: state.workspaces.map(w =>
+						w.id === workspace.id ? workspace : w
+					),
+				}));
 			},
 			deleteWorkspace: (id: string) => {
-				set((state) => ({
-					workspaces: state.workspaces.filter((w) => w.id !== id),
-				}))
+				set(state => ({
+					workspaces: state.workspaces.filter(w => w.id !== id),
+				}));
 			},
 		}),
 		{
@@ -27,4 +29,4 @@ export const useWorkspacesStore = create<WorkspacesStore>()(
 			version: 1,
 		}
 	)
-)
+);
