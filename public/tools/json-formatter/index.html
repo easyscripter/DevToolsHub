@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>JSON Formatter</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+			background: #0f0f23;
+			color: #ffffff;
+			height: 100vh;
+			overflow: hidden;
+		}
+
+		.container {
+			display: flex;
+			flex-direction: column;
+			height: 100vh;
+			padding: 16px;
+			gap: 16px;
+		}
+
+		.header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding-bottom: 16px;
+			border-bottom: 1px solid #2a2a3e;
+		}
+
+		.title {
+			font-size: 24px;
+			font-weight: 600;
+			color: #ffffff;
+		}
+
+		.controls {
+			display: flex;
+			gap: 12px;
+		}
+
+		.btn {
+			padding: 8px 16px;
+			border: none;
+			border-radius: 6px;
+			font-size: 14px;
+			font-weight: 500;
+			cursor: pointer;
+			transition: all 0.2s ease;
+			background: #2a2a3e;
+			color: #ffffff;
+		}
+
+		.btn:hover {
+			background: #3a3a4e;
+		}
+
+		.btn.primary {
+			background: #007acc;
+		}
+
+		.btn.primary:hover {
+			background: #005a9e;
+		}
+
+		.btn.success {
+			background: #28a745;
+		}
+
+		.btn.success:hover {
+			background: #1e7e34;
+		}
+
+		.btn.danger {
+			background: #dc3545;
+		}
+
+		.btn.danger:hover {
+			background: #c82333;
+		}
+
+		.main-content {
+			display: flex;
+			flex: 1;
+			gap: 16px;
+			min-height: 0;
+		}
+
+		.editor-section {
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			gap: 12px;
+		}
+
+		.section-title {
+			font-size: 16px;
+			font-weight: 600;
+			color: #ffffff;
+			margin-bottom: 8px;
+		}
+
+		.editor-container {
+			flex: 1;
+			position: relative;
+			border-radius: 8px;
+			overflow: hidden;
+			background: #1a1a2e;
+			border: 1px solid #2a2a3e;
+		}
+
+		.editor {
+			width: 100%;
+			height: 100%;
+			padding: 16px;
+			background: #1a1a2e;
+			color: #ffffff;
+			border: none;
+			resize: none;
+			font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+			font-size: 14px;
+			line-height: 1.5;
+		}
+
+		.editor:focus {
+			outline: none;
+		}
+
+		.status-bar {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 8px 16px;
+			background: #2a2a3e;
+			font-size: 12px;
+			color: #a0a0a0;
+		}
+
+		.status-item {
+			display: flex;
+			align-items: center;
+			gap: 4px;
+		}
+
+		.status-indicator {
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			background: #dc3545;
+		}
+
+		.status-indicator.valid {
+			background: #28a745;
+		}
+
+		.error-message {
+			background: #dc3545;
+			color: #ffffff;
+			padding: 12px;
+			border-radius: 6px;
+			margin-top: 8px;
+			font-size: 14px;
+		}
+
+		.sample-data {
+			position: absolute;
+			top: 8px;
+			right: 8px;
+			z-index: 10;
+		}
+
+		.sample-btn {
+			padding: 4px 8px;
+			background: rgba(42, 42, 62, 0.8);
+			color: #ffffff;
+			border: none;
+			border-radius: 4px;
+			font-size: 12px;
+			cursor: pointer;
+		}
+
+		.sample-btn:hover {
+			background: rgba(58, 58, 78, 0.8);
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<h1 class="title">JSON Formatter</h1>
+			<div class="controls">
+				<button class="btn" onclick="loadSampleData()">Load Sample</button>
+				<button class="btn" onclick="clearEditor()">Clear</button>
+				<button class="btn primary" onclick="formatJSON()">Format</button>
+				<button class="btn success" onclick="validateJSON()">Validate</button>
+				<button class="btn" onclick="copyToClipboard()">Copy</button>
+			</div>
+		</div>
+
+		<div class="main-content">
+			<div class="editor-section">
+				<div class="section-title">Input JSON</div>
+				<div class="editor-container">
+					<textarea
+						id="jsonInput"
+						class="editor"
+						placeholder="Paste your JSON here..."
+						spellcheck="false"
+					></textarea>
+					<div class="sample-data">
+						<button class="sample-btn" onclick="loadSampleData()">Sample</button>
+					</div>
+				</div>
+				<div id="errorMessage" class="error-message" style="display: none;"></div>
+				<div class="status-bar">
+					<div class="status-item">
+						<div id="statusIndicator" class="status-indicator"></div>
+						<span id="statusText">Ready</span>
+					</div>
+					<div class="status-item">
+						<span id="charCount">0 characters</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		const jsonInput = document.getElementById('jsonInput');
+		const errorMessage = document.getElementById('errorMessage');
+		const statusIndicator = document.getElementById('statusIndicator');
+		const statusText = document.getElementById('statusText');
+		const charCount = document.getElementById('charCount');
+
+		const sampleJSON = {
+			"name": "John Doe",
+			"age": 30,
+			"email": "john.doe@example.com",
+			"address": {
+				"street": "123 Main St",
+				"city": "New York",
+				"state": "NY",
+				"zipCode": "10001"
+			},
+			"phoneNumbers": [
+				{
+					"type": "home",
+					"number": "212-555-1234"
+				},
+				{
+					"type": "work",
+					"number": "646-555-5678"
+				}
+			],
+			"isActive": true,
+			"createdAt": "2023-01-15T10:30:00Z"
+		};
+
+		function updateCharCount() {
+			const count = jsonInput.value.length;
+			charCount.textContent = `${count} characters`;
+		}
+
+		function updateStatus(isValid, message) {
+			statusIndicator.className = `status-indicator ${isValid ? 'valid' : ''}`;
+			statusText.textContent = message;
+		}
+
+		function showError(message) {
+			errorMessage.textContent = message;
+			errorMessage.style.display = 'block';
+			updateStatus(false, 'Invalid JSON');
+		}
+
+		function hideError() {
+			errorMessage.style.display = 'none';
+		}
+
+		function formatJSON() {
+			try {
+				const input = jsonInput.value.trim();
+				if (!input) {
+					showError('Please enter some JSON data');
+					return;
+				}
+
+				const parsed = JSON.parse(input);
+				const formatted = JSON.stringify(parsed, null, 2);
+				jsonInput.value = formatted;
+				
+				hideError();
+				updateStatus(true, 'Valid JSON');
+				updateCharCount();
+			} catch (error) {
+				showError(`JSON Error: ${error.message}`);
+			}
+		}
+
+		function validateJSON() {
+			try {
+				const input = jsonInput.value.trim();
+				if (!input) {
+					showError('Please enter some JSON data');
+					return;
+				}
+
+				JSON.parse(input);
+				hideError();
+				updateStatus(true, 'Valid JSON');
+			} catch (error) {
+				showError(`JSON Error: ${error.message}`);
+			}
+		}
+
+		function loadSampleData() {
+			jsonInput.value = JSON.stringify(sampleJSON, null, 2);
+			hideError();
+			updateStatus(true, 'Sample data loaded');
+			updateCharCount();
+		}
+
+		function clearEditor() {
+			jsonInput.value = '';
+			hideError();
+			updateStatus(false, 'Ready');
+			updateCharCount();
+		}
+
+		async function copyToClipboard() {
+			try {
+				await navigator.clipboard.writeText(jsonInput.value);
+				statusText.textContent = 'Copied to clipboard';
+				setTimeout(() => {
+					statusText.textContent = 'Ready';
+				}, 2000);
+			} catch (error) {
+				statusText.textContent = 'Failed to copy';
+			}
+		}
+
+		jsonInput.addEventListener('input', () => {
+			updateCharCount();
+			hideError();
+			updateStatus(false, 'Ready');
+		});
+
+		jsonInput.addEventListener('keydown', (e) => {
+			if (e.key === 'Tab') {
+				e.preventDefault();
+				const start = jsonInput.selectionStart;
+				const end = jsonInput.selectionEnd;
+				jsonInput.value = jsonInput.value.substring(0, start) + '  ' + jsonInput.value.substring(end);
+				jsonInput.selectionStart = jsonInput.selectionEnd = start + 2;
+			}
+		});
+
+		updateCharCount();
+	</script>
+</body>
+</html> 

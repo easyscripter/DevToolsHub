@@ -47,7 +47,9 @@
 			"delete": "Delete",
 			"cancel": "Cancel"
 		},
-		"workspaceNotFound": "Workspace not found"
+		"workspaceNotFound": "Workspace not found",
+		"installedTools": "Installed Tools",
+		"noToolsInstalled": "No tools installed in this workspace yet."
 	},
 	"Tools": {
 		"title": "Tools",
@@ -59,6 +61,8 @@
 		"active": "Active",
 		"inactive": "Inactive",
 		"run": "Run",
+		"uninstall": "Uninstall",
+		"install": "Install",
 		"noToolsFound": "No tools found matching your search.",
 		"noToolsYet": "No tools uploaded yet. Upload your first tool to get started!",
 		"uploadToolDialog": {
@@ -77,6 +81,17 @@
 			"uploadError": "Failed to upload tool",
 			"upload": "Upload",
 			"cancel": "Cancel"
-		}
+		},
+		"installToolDialog": {
+			"title": "Install Tool",
+			"description": "Select a workspace to install this tool in",
+			"workspaceLabel": "Workspace",
+			"workspacePlaceholder": "Select a workspace...",
+			"install": "Install",
+			"cancel": "Cancel"
+		},
+		"toolNotFound": "Tool Not Found",
+		"toolNotFoundDescription": "The requested tool could not be found.",
+		"alreadyInstalledInAllWorkspaces": "This tool is already installed in all workspaces"
 	}
 }

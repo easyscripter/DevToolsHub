@@ -47,7 +47,9 @@
 			"delete": "Удалить",
 			"cancel": "Отмена"
 		},
-		"workspaceNotFound": "Рабочее пространство не найдено"
+		"workspaceNotFound": "Рабочее пространство не найдено",
+		"installedTools": "Установленные тулзы",
+		"noToolsInstalled": "В этом рабочем пространстве пока нет установленных тулзов."
 	},
 	"Tools": {
 		"title": "Тулзы",
@@ -56,9 +58,11 @@
 		"uploadToolLabel": "Также вы можете загрузить свою тулзу по кнопке ниже",
 		"searchToolsPlaceholder": "Поиск тулзов...",
 		"all": "Все",
+		"install": "Установить",
 		"active": "Активные",
 		"inactive": "Неактивные",
 		"run": "Запустить",
+		"uninstall": "Удалить",
 		"noToolsFound": "Тулзы не найдены по вашему запросу.",
 		"noToolsYet": "Тулзы еще не загружены. Загрузите свою первую тулзу для начала!",
 		"uploadToolDialog": {
@@ -77,6 +81,17 @@
 			"uploadError": "Не удалось загрузить тулзу",
 			"upload": "Загрузить",
 			"cancel": "Отмена"
-		}
+		},
+		"installToolDialog": {
+			"title": "Установить тулзу",
+			"description": "Выберите рабочее пространство для установки этой тулзы",
+			"workspaceLabel": "Рабочее пространство",
+			"workspacePlaceholder": "Выберите рабочее пространство...",
+			"install": "Установить",
+			"cancel": "Отмена"
+		},
+		"toolNotFound": "Тулза не найдена",
+		"toolNotFoundDescription": "Запрашиваемая тулза не найдена.",
+		"alreadyInstalledInAllWorkspaces": "Эта тулза уже установлена во всех рабочих пространствах"
 	}
 }

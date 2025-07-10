@@ -1,7 +1,7 @@
 export type Tool = {
 	manifest: ToolManifest;
-	workspaceId: string;
-}
+	workspaceIds: string[];
+};
 
 export type ToolManifest = {
 	id: string;
@@ -11,11 +11,12 @@ export type ToolManifest = {
 	author: string;
 	icon: string;
 	entrypoint: string;
-}
+};
 
 export type ToolsStore = {
 	tools: Tool[];
 	setTools: (tools: Tool[]) => void;
 	updateTools: (newSettings: Partial<Tool>) => void;
-	resetTools: () => void;
-}
+	installTool: (toolId: string, workspaceId: string) => void;
+	uninstallTool: (toolId: string, workspaceId: string) => void;
+};
