@@ -1,0 +1,56 @@
+name: DevToolsHub CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  REGISTRY: dockerhub.io
+  IMAGE_NAME: easyscripter/dev-tools-hub:latest
+
+jobs:
+  lint:
+    name: Lint Next.js Project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+          cache: "yarn"
+      - name: Install dependencies
+        run: yarn install
+      - name: Run lint
+        run: yarn lint
+
+  publish:
+    name: Publish Docker Image
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Login to Docker
+        run: |
+          echo ${{ secrets.DOCKER_HUB_TOKEN }} | docker login -u ${{secrets.DOCKER_HUB_USERNAME}} --password-stdin
+      - name: Build and Publish in Docker Hub
+        run: |
+          docker-compose build
+          docker-compose push
+
+  deploy:
+    needs: publish
+    name: deploy image to remote server
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to Remote Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{secrets.REMOTE_SSH_HOST}}
+          username: ${{secrets.REMOTE_SSH_USER}}
+          password: ${{ secrets.REMOTE_SSH_PW }}
+          port: 22
+          script: |
+            cd ${{ secrets.REMOTE_WORK_DIR }}
+            docker-compose pull
+            docker-compose up -d

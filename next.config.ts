@@ -5,6 +5,7 @@ import { ROUTES } from "./constants/routes";
 const withNextIntl = createNextIntlPlugin('./config/i18n/request.ts');
 
 const nextConfig: NextConfig = {
+  output: 'standalone',
   async redirects() {
     return [
       {
