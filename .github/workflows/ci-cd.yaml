@@ -44,4 +44,4 @@ jobs:
             docker pull easyscripter/dev-tools-hub:latest
             docker stop devtools-hub || true
             docker rm devtools-hub || true
-            docker run -d --name devtools-hub -p 80:3000 easyscripter/dev-tools-hub:latest
+            docker run -d --name devtools-hub -p 3000:3000 easyscripter/dev-tools-hub:latest
