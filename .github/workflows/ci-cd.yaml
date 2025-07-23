@@ -5,52 +5,42 @@ on:
     branches:
       - main
 
-env:
-  REGISTRY: dockerhub.io
-  IMAGE_NAME: easyscripter/dev-tools-hub:latest
-
 jobs:
-  lint:
-    name: Lint Next.js Project
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18"
-          cache: "yarn"
+      - name: Checkout Repository
+        uses: actions/checkout@v3
       - name: Install dependencies
         run: yarn install
       - name: Run lint
         run: yarn lint
-
-  publish:
-    name: Publish Docker Image
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Login to Docker
-        run: |
-          echo ${{ secrets.DOCKER_HUB_TOKEN }} | docker login -u ${{secrets.DOCKER_HUB_USERNAME}} --password-stdin
-      - name: Build and Publish in Docker Hub
-        run: |
-          docker-compose build
-          docker-compose push
-
-  deploy:
-    needs: publish
-    name: deploy image to remote server
-    runs-on: ubuntu-latest
-    steps:
-      - name: Login to Remote Server
-        uses: appleboy/ssh-action@master
+      - name: Build Next.js app
+        run: yarn build
+      - name: Build docker image
+        run: docker build -t easyscripter/dev-tools-hub:latest .
+      - name: LogIn to Docker Hub
+        uses: docker/login-action@v3
         with:
-          host: ${{secrets.REMOTE_SSH_HOST}}
-          username: ${{secrets.REMOTE_SSH_USER}}
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: easyscripter/dev-tools-hub:latest
+
+      - name: Deploy to remote server
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.REMOTE_SSH_HOST }}
+          username: ${{ secrets.REMOTE_SSH_USER }}
           password: ${{ secrets.REMOTE_SSH_PW }}
-          port: 22
           script: |
-            cd ${{ secrets.REMOTE_WORK_DIR }}
-            docker-compose pull
-            docker-compose up -d
+            cd ${{ secrets.REMOTE_WORKING_DIR }}
+            docker pull easyscripter/dev-tools-hub:latest
+            docker stop devtools-hub || true
+            docker rm devtools-hub || true
+            docker run -d --name devtools-hub -p 80:3000 easyscripter/dev-tools-hub:latest

@@ -1,60 +1,56 @@
-# Многоэтапная сборка для оптимизации размера образа
 FROM node:20-alpine AS base
 
-# Устанавливаем yarn
-RUN corepack enable
-
-# Устанавливаем зависимости только для production
 FROM base AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-# Копируем файлы зависимостей
-COPY package.json yarn.lock* ./
-RUN yarn install --frozen-lockfile --production && yarn cache clean
+COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 
-# Этап сборки
+RUN \
+    if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
+    elif [ -f package-lock.json ]; then npm ci; \
+    elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm i --frozen-lockfile; \
+    else echo "Lockfile not found." && exit 1; \
+    fi
+
+
 FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+ENV NEXT_TELEMETRY_DISABLED 1
 
-# Собираем приложение
-RUN yarn build
+RUN \
+    if [ -f yarn.lock ]; then yarn run build; \
+    elif [ -f package-lock.json ]; then npm run build; \
+    elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run build; \
+    else echo "Lockfile not found." && exit 1; \
+    fi
 
-# Продакшн этап
+
 FROM base AS runner
 WORKDIR /app
-
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
 
-# Создаем пользователя для безопасности
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# Копируем собранное приложение
 COPY --from=builder /app/public ./public
 
-# Устанавливаем права на .next директорию
 RUN mkdir .next
 RUN chown nextjs:nodejs .next
 
-# Копируем собранное приложение
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# Устанавливаем curl для health check
-RUN apk add --no-cache curl
 
-# Переключаемся на пользователя nextjs
 USER nextjs
 
-# Открываем порт
 EXPOSE 3000
 
 ENV PORT 3000
+
 ENV HOSTNAME "0.0.0.0"
 
-# Запускаем приложение
-CMD ["node", "server.js"] 
+CMD ["node", "server.js"]
