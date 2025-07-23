@@ -38,6 +38,7 @@ jobs:
           host: ${{ secrets.REMOTE_SSH_HOST }}
           username: ${{ secrets.REMOTE_SSH_USER }}
           password: ${{ secrets.REMOTE_SSH_PW }}
+          port: ${{ secrets.REMOTE_SSH_PORT }}
           script: |
             cd ${{ secrets.REMOTE_WORKING_DIR }}
             docker pull easyscripter/dev-tools-hub:latest
