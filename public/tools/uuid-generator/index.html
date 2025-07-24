@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>UUID Generator</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family:
+                    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                    sans-serif;
+                background: #0f0f23;
+                color: #ffffff;
+                height: 10vh;
+                overflow: hidden;
+            }
+
+            .container {
+                display: flex;
+                flex-direction: column;
+                height: 10vh;
+                padding: 16px;
+                gap: 16px;
+            }
+
+            .header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding-bottom: 16px;
+                border-bottom: 1px solid #2a2a3e;
+            }
+
+            .title {
+                font-size: 24px;
+                font-weight: 600;
+                color: #ffffff;
+            }
+
+            .btn {
+                padding: 8px 16px;
+                border: none;
+                border-radius: 6px;
+                font-size: 14px;
+                font-weight: 500;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                background: #2a2a3e;
+                color: #ffffff;
+            }
+
+            .btn:hover {
+                background: #3a3a4e;
+            }
+
+            .main-content {
+                display: flex;
+                flex: 1;
+                gap: 16px;
+            }
+
+            .editor-section {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .section-title {
+                font-size: 16px;
+                font-weight: 600;
+                color: #ffffff;
+                margin-bottom: 8px;
+            }
+
+            .editor-container {
+                flex: 1;
+                position: relative;
+                border-radius: 8px;
+                overflow: hidden;
+                background: #1a1a2e;
+                border: 1px solid #2a2a3e;
+            }
+
+            .editor {
+                width: 100%;
+                height: 100%;
+                padding: 16px;
+                background: #1a1a2e;
+                color: #ffffff;
+                border: none;
+                resize: none;
+                font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+                font-size: 14px;
+                line-height: 1.5;
+            }
+
+            .editor:focus {
+                outline: none;
+            }
+
+            .error-message {
+                background: #dc3545;
+                color: #ffffff;
+                padding: 12px;
+                border-radius: 6px;
+                margin-top: 8px;
+                font-size: 14px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1 class="title">UUID Generator</h1>
+            </div>
+            <div class="main-content">
+                <input
+                    class="editor"
+                    type="text"
+                    readonly
+                    value="Generated UUID"
+                />
+                <button class="btn">Generate</button>
+            </div>
+        </div>
+
+        <script>
+            const input = document.querySelector(".editor");
+            const generateButton = document.querySelector(".btn");
+
+            const generate = () => {
+                const uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+                    /[xy]/g,
+                    (c) => {
+                        const r = (Math.random() * 16) | 0;
+                        const v = c === "x" ? r : (r & 0x3) | 0x8;
+                        return v.toString(16);
+                    },
+                );
+                input.value = uuid;
+            };
+
+            generateButton.addEventListener("click", generate);
+        </script>
+    </body>
+</html>
