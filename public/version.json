@@ -1,0 +1,9 @@
+[
+  {
+    "version": "0.1.3",
+    "changelog": [
+      "We added internal plugin uuid generator",
+      "Fixes for showing plugins in workspaces"
+    ]
+  }
+]
