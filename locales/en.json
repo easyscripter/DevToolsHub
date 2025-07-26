@@ -1,97 +1,97 @@
 {
-	"Settings": {
-		"title": "Settings",
-		"description": "Manage your application preferences",
-		"General": "General",
-		"theme": {
-			"title": "Theme",
-			"description": "Choose your preferred theme for the interface",
-			"options": {
-				"light": "Light",
-				"dark": "Dark",
-				"system": "System"
-			}
-		},
-		"language": {
-			"title": "Language",
-			"description": "Choose your preferred language",
-			"options": {
-				"en": "English",
-				"ru": "Russian"
-			}
-		}
-	},
-	"Sidebar": {
-		"workspaces": "Workspaces",
-		"tools": "Tools",
-		"settings": "Settings"
-	},
-	"Workspaces": {
-		"title": "Workspaces",
-		"description": "Manage your workspaces",
-		"createWorkspace": "Create Workspace",
-		"createWorkspaceDialog": {
-			"title": "Create Workspace",
-			"description": "Create a new workspace to organize your tools.",
-			"nameLabel": "Name",
-			"namePlaceholder": "Enter workspace name...",
-			"descriptionLabel": "Description",
-			"descriptionPlaceholder": "Enter workspace description...",
-			"iconLabel": "Icon",
-			"iconPlaceholder": "Select an icon...",
-			"create": "Create"
-		},
-		"deleteWorkspaceDialog": {
-			"title": "Delete Workspace",
-			"description": "Are you sure you want to delete this workspace?",
-			"delete": "Delete",
-			"cancel": "Cancel"
-		},
-		"workspaceNotFound": "Workspace not found",
-		"installedTools": "Installed Tools",
-		"noToolsInstalled": "No tools installed in this workspace yet."
-	},
-	"Tools": {
-		"title": "Tools",
-		"description": "Welcome to the tools page! Here you can find tools for your workspaces.",
-		"uploadTool": "Upload Tool",
-		"uploadToolLabel": "Also you can upload your own tool by clicking the button below",
-		"searchToolsPlaceholder": "Search tools...",
-		"all": "All",
-		"active": "Active",
-		"inactive": "Inactive",
-		"run": "Run",
-		"uninstall": "Uninstall",
-		"install": "Install",
-		"noToolsFound": "No tools found matching your search.",
-		"noToolsYet": "No tools uploaded yet. Upload your first tool to get started!",
-		"uploadToolDialog": {
-			"title": "Upload Tool",
-			"description": "Download your tool in the form of a ZIP file. The archive should contain files Main.js, manifest.json, readme.md. The archive should not exceed 10 MB",
-			"zipFileLabel": "Zip file:",
-			"zipFilePlaceholder": "Select zip file...",
-			"zipFileError": "Please select a zip file",
-			"zipFileSizeError": "Zip file size must be less than 10MB",
-			"fileSelected": "File selected",
-			"dragDropOrClick": "Drag & drop a file here, or click to select",
-			"dropFileHere": "Drop the file here",
-			"invalidFileType": "Invalid file type. Please select a ZIP file.",
-			"uploading": "Uploading...",
-			"uploadSuccess": "Tool uploaded successfully",
-			"uploadError": "Failed to upload tool",
-			"upload": "Upload",
-			"cancel": "Cancel"
-		},
-		"installToolDialog": {
-			"title": "Install Tool",
-			"description": "Select a workspace to install this tool in",
-			"workspaceLabel": "Workspace",
-			"workspacePlaceholder": "Select a workspace...",
-			"install": "Install",
-			"cancel": "Cancel"
-		},
-		"toolNotFound": "Tool Not Found",
-		"toolNotFoundDescription": "The requested tool could not be found.",
-		"alreadyInstalledInAllWorkspaces": "This tool is already installed in all workspaces"
-	}
+  "Settings": {
+    "title": "Settings",
+    "description": "Manage your application preferences",
+    "General": "General",
+    "theme": {
+      "title": "Theme",
+      "description": "Choose your preferred theme for the interface",
+      "options": {
+        "light": "Light",
+        "dark": "Dark",
+        "system": "System"
+      }
+    },
+    "language": {
+      "title": "Language",
+      "description": "Choose your preferred language",
+      "options": {
+        "en": "English",
+        "ru": "Russian"
+      }
+    }
+  },
+  "Sidebar": {
+    "workspaces": "Workspaces",
+    "tools": "Tools",
+    "settings": "Settings"
+  },
+  "Workspaces": {
+    "title": "Workspaces",
+    "description": "Manage your workspaces",
+    "createWorkspace": "Create Workspace",
+    "createWorkspaceDialog": {
+      "title": "Create Workspace",
+      "description": "Create a new workspace to organize your tools.",
+      "nameLabel": "Name",
+      "namePlaceholder": "Enter workspace name...",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Enter workspace description...",
+      "iconLabel": "Icon",
+      "iconPlaceholder": "Select an icon...",
+      "create": "Create"
+    },
+    "deleteWorkspaceDialog": {
+      "title": "Delete Workspace",
+      "description": "Are you sure you want to delete this workspace?",
+      "delete": "Delete",
+      "cancel": "Cancel"
+    },
+    "workspaceNotFound": "Workspace not found",
+    "installedTools": "Installed Tools",
+    "noToolsInstalled": "No tools installed in this workspace yet."
+  },
+  "Tools": {
+    "title": "Tools",
+    "description": "Welcome to the tools page! Here you can find tools for your workspaces.",
+    "uploadTool": "Upload Tool",
+    "uploadToolLabel": "Also you can upload your own tool by clicking the button below",
+    "searchToolsPlaceholder": "Search tools...",
+    "all": "All",
+    "active": "Active",
+    "inactive": "Inactive",
+    "run": "Run",
+    "uninstall": "Uninstall",
+    "install": "Install",
+    "noToolsFound": "No tools found matching your search.",
+    "noToolsYet": "No tools uploaded yet. Upload your first tool to get started!",
+    "uploadToolDialog": {
+      "title": "Upload Tool",
+      "description": "Download your tool in the form of a ZIP file. The archive should contain files Main.js, manifest.json, readme.md. The archive should not exceed 10 MB",
+      "zipFileLabel": "Zip file:",
+      "zipFilePlaceholder": "Select zip file...",
+      "zipFileError": "Please select a zip file",
+      "zipFileSizeError": "Zip file size must be less than 10MB",
+      "fileSelected": "File selected",
+      "dragDropOrClick": "Drag & drop a file here, or click to select",
+      "dropFileHere": "Drop the file here",
+      "invalidFileType": "Invalid file type. Please select a ZIP file.",
+      "uploading": "Uploading...",
+      "uploadSuccess": "Tool uploaded successfully",
+      "uploadError": "Failed to upload tool",
+      "upload": "Upload",
+      "cancel": "Cancel"
+    },
+    "installToolDialog": {
+      "title": "Install Tool",
+      "description": "Select a workspace to install this tool in",
+      "workspaceLabel": "Workspace",
+      "workspacePlaceholder": "Select a workspace...",
+      "install": "Install",
+      "cancel": "Cancel"
+    },
+    "toolNotFound": "Tool Not Found",
+    "toolNotFoundDescription": "The requested tool could not be found.",
+    "alreadyInstalledInAllWorkspaces": "This tool is already installed in all workspaces"
+  }
 }
