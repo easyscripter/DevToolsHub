@@ -27,7 +27,6 @@ export const VERSIONS = {
   TOOLS_STORE: 2,
   WORKSPACES_STORE: 1,
   SETTINGS_STORE: 2,
-  APP_VERSION: '0.1.0',
 } as const;
 
 // API конфигурация

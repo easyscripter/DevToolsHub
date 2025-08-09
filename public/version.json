@@ -5,5 +5,14 @@
       "We added internal plugin uuid generator",
       "Fixes for showing plugins in workspaces"
     ]
+  },
+  {
+    "version": "0.2.0",
+    "changelog": [
+      "Some bug fixes",
+      "We added tools management: Now you can uploading you own tools in zip file with manifest.json, index.html and after that you can install it in your workspace",
+      "All uploaded tools by external users will be available for all users",
+      "We added search for tools"
+    ]
   }
 ]
