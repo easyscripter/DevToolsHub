@@ -19,18 +19,18 @@ export const useToolsStore = create<ToolsStore>()(
           },
           workspaceIds: [],
         },
-        {
-          manifest: {
-            id: "uuid-generator",
-            name: "UUID Generator",
-            description: "Generate unique identifiers",
-            version: "1.0.0",
-            author: "DevTools Hub",
-            icon: "/assets/tools-icons/uuid-generator.png",
-            entrypoint: "/tools/uuid-generator/index.html",
-          },
-          workspaceIds: [],
-        },
+        // {
+        //   manifest: {
+        //     id: "uuid-generator",
+        //     name: "UUID Generator",
+        //     description: "Generate unique identifiers",
+        //     version: "1.0.0",
+        //     author: "DevTools Hub",
+        //     icon: "/assets/tools-icons/uuid-generator.png",
+        //     entrypoint: "/tools/uuid-generator/index.html",
+        //   },
+        //   workspaceIds: [],
+        // },
       ],
       setTools: (tools) => set({ tools }),
       updateTools: (newSettings) =>

@@ -20,7 +20,7 @@ import { Label } from '@/components/ui/label';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { useWorkspacesStore } from '@/store/workspaces';
-import { useToolsStore } from '@/store/tools';
+import { useToolsManagement } from '@/hooks';
 import { Tool } from '@/types/tools';
 
 type InstallToolDialogProps = {
@@ -39,12 +39,12 @@ export default function InstallToolDialog({
 	const toolsTranslations = useTranslations('Tools');
 	const [selectedWorkspaceId, setSelectedWorkspaceId] = useState<string>('');
 	const workspaces = useWorkspacesStore(state => state.workspaces);
-	const tools = useToolsStore(state => state.tools);
+	const { getAvailableToolsForWorkspace } = useToolsManagement();
 	
 	const availableWorkspaces = workspaces.filter(workspace => {
 		if (!tool) return true;
-		const toolData = tools.find(t => t.manifest.id === tool.manifest.id);
-		return !toolData?.workspaceIds?.includes(workspace.id);
+		const availableTools = getAvailableToolsForWorkspace(workspace.id);
+		return availableTools.some(t => t.manifest.id === tool.manifest.id);
 	});
 
 	const handleInstall = () => {

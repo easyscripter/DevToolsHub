@@ -1,97 +1,101 @@
 {
-	"Settings": {
-		"title": "Настройки",
-		"description": "Управление настройками приложения",
-		"General": "Общие",
-		"theme": {
-			"title": "Тема",
-			"description": "Выберите предпочтительную тему для интерфейса",
-			"options": {
-				"light": "Светлая",
-				"dark": "Темная",
-				"system": "Системная"
-			}
-		},
-		"language": {
-			"title": "Язык",
-			"description": "Выберите предпочтительный язык",
-			"options": {
-				"en": "Английский",
-				"ru": "Русский"
-			}
-		}
-	},
-	"Sidebar": {
-		"workspaces": "Рабочие пространства",
-		"tools": "Тулзы",
-		"settings": "Настройки"
-	},
-	"Workspaces": {
-		"title": "Рабочие пространства",
-		"description": "Управление вашими рабочими пространствами",
-		"createWorkspace": "Создать рабочее пространство",
-		"createWorkspaceDialog": {
-			"title": "Создать рабочее пространство",
-			"description": "Создайте новое рабочее пространство для организации ваших инструментов.",
-			"nameLabel": "Название",
-			"namePlaceholder": "Введите название рабочего пространства...",
-			"descriptionLabel": "Описание",
-			"descriptionPlaceholder": "Введите описание рабочего пространства...",
-			"iconLabel": "Иконка",
-			"iconPlaceholder": "Выберите иконку...",
-			"create": "Создать"
-		},
-		"deleteWorkspaceDialog": {
-			"title": "Удалить рабочее пространство",
-			"description": "Вы уверены, что хотите удалить это рабочее пространство?",
-			"delete": "Удалить",
-			"cancel": "Отмена"
-		},
-		"workspaceNotFound": "Рабочее пространство не найдено",
-		"installedTools": "Установленные тулзы",
-		"noToolsInstalled": "В этом рабочем пространстве пока нет установленных тулзов."
-	},
-	"Tools": {
-		"title": "Тулзы",
-		"description": "Здесь вы можете найти тулзы для ваших рабочих пространств.",
-		"uploadTool": "Загрузить тулзу",
-		"uploadToolLabel": "Также вы можете загрузить свою тулзу по кнопке ниже",
-		"searchToolsPlaceholder": "Поиск тулзов...",
-		"all": "Все",
-		"install": "Установить",
-		"active": "Активные",
-		"inactive": "Неактивные",
-		"run": "Запустить",
-		"uninstall": "Удалить",
-		"noToolsFound": "Тулзы не найдены по вашему запросу.",
-		"noToolsYet": "Тулзы еще не загружены. Загрузите свою первую тулзу для начала!",
-		"uploadToolDialog": {
-			"title": "Загрузить тулзу",
-			"description": "Загрузите свою тулзу в виде zip файла. Архив должен содержать файлы main.js, manifest.json, readme.md . Архив не должен превышать 10 МБ",
-			"zipFileLabel": "Zip файл:",
-			"zipFilePlaceholder": "Выберите zip файл...",
-			"zipFileError": "Пожалуйста, выберите zip файл",
-			"zipFileSizeError": "Размер zip файла должен быть меньше 10MB",
-			"fileSelected": "Файл выбран",
-			"dragDropOrClick": "Перетащите файл сюда или нажмите для выбора",
-			"dropFileHere": "Отпустите файл здесь",
-			"invalidFileType": "Неверный тип файла. Пожалуйста, выберите ZIP файл.",
-			"uploading": "Загрузка...",
-			"uploadSuccess": "Тулза загружена успешно",
-			"uploadError": "Не удалось загрузить тулзу",
-			"upload": "Загрузить",
-			"cancel": "Отмена"
-		},
-		"installToolDialog": {
-			"title": "Установить тулзу",
-			"description": "Выберите рабочее пространство для установки этой тулзы",
-			"workspaceLabel": "Рабочее пространство",
-			"workspacePlaceholder": "Выберите рабочее пространство...",
-			"install": "Установить",
-			"cancel": "Отмена"
-		},
-		"toolNotFound": "Тулза не найдена",
-		"toolNotFoundDescription": "Запрашиваемая тулза не найдена.",
-		"alreadyInstalledInAllWorkspaces": "Эта тулза уже установлена во всех рабочих пространствах"
-	}
+  "Settings": {
+    "title": "Настройки",
+    "description": "Управление настройками приложения",
+    "General": "Общие",
+    "theme": {
+      "title": "Тема",
+      "description": "Выберите предпочтительную тему для интерфейса",
+      "options": {
+        "light": "Светлая",
+        "dark": "Темная",
+        "system": "Системная"
+      }
+    },
+    "language": {
+      "title": "Язык",
+      "description": "Выберите предпочтительный язык",
+      "options": {
+        "en": "Английский",
+        "ru": "Русский"
+      }
+    }
+  },
+  "Sidebar": {
+    "workspaces": "Рабочие пространства",
+    "tools": "Тулзы",
+    "settings": "Настройки"
+  },
+  "Workspaces": {
+    "title": "Рабочие пространства",
+    "description": "Управление вашими рабочими пространствами",
+    "createWorkspace": "Создать рабочее пространство",
+    "createWorkspaceDialog": {
+      "title": "Создать рабочее пространство",
+      "description": "Создайте новое рабочее пространство для организации ваших инструментов.",
+      "nameLabel": "Название",
+      "namePlaceholder": "Введите название рабочего пространства...",
+      "descriptionLabel": "Описание",
+      "descriptionPlaceholder": "Введите описание рабочего пространства...",
+      "iconLabel": "Иконка",
+      "iconPlaceholder": "Выберите иконку...",
+      "create": "Создать"
+    },
+    "deleteWorkspaceDialog": {
+      "title": "Удалить рабочее пространство",
+      "description": "Вы уверены, что хотите удалить это рабочее пространство?",
+      "delete": "Удалить",
+      "cancel": "Отмена"
+    },
+    "workspaceNotFound": "Рабочее пространство не найдено",
+    "installedTools": "Установленные тулзы",
+    "noToolsInstalled": "В этом рабочем пространстве пока нет установленных тулзов."
+  },
+  "Tools": {
+    "title": "Тулзы",
+    "description": "Здесь вы можете найти тулзы для ваших рабочих пространств.",
+    "uploadTool": "Загрузить тулзу",
+    "uploadToolLabel": "Также вы можете загрузить свою тулзу по кнопке ниже",
+    "searchToolsPlaceholder": "Поиск тулзов...",
+    "searchToolsNotFound": "Тулзы не найдены по вашему запросу.",
+    "searchToolsNotAvailable": "Нет доступных тулзов",
+    "all": "Все",
+    "install": "Установить",
+    "active": "Активные",
+    "inactive": "Неактивные",
+    "run": "Запустить",
+    "uninstall": "Удалить",
+    "noToolsFound": "Тулзы не найдены по вашему запросу.",
+    "noToolsYet": "Тулзы еще не загружены. Загрузите свою первую тулзу для начала!",
+    "uploadingTools": "Загрузка тулзов...",
+    "uploadToolDialog": {
+      "title": "Загрузить тулзу",
+      "description": "Загрузите свою тулзу в виде zip файла. Архив должен содержать файлы main.js, manifest.json, readme.md . Архив не должен превышать 10 МБ",
+      "zipFileLabel": "Zip файл:",
+      "zipFilePlaceholder": "Выберите zip файл...",
+      "zipFileError": "Пожалуйста, выберите zip файл",
+      "zipFileSizeError": "Размер zip файла должен быть меньше 10MB",
+      "fileSelected": "Файл выбран",
+      "dragDropOrClick": "Перетащите файл сюда или нажмите для выбора",
+      "dropFileHere": "Отпустите файл здесь",
+      "invalidFileType": "Неверный тип файла. Пожалуйста, выберите ZIP файл.",
+      "uploading": "Загрузка...",
+      "uploadSuccess": "Тулза загружена успешно",
+      "uploadError": "Не удалось загрузить тулзу",
+      "upload": "Загрузить",
+      "cancel": "Отмена"
+    },
+    "installToolDialog": {
+      "title": "Установить тулзу",
+      "description": "Выберите рабочее пространство для установки этой тулзы",
+      "workspaceLabel": "Рабочее пространство",
+      "workspacePlaceholder": "Выберите рабочее пространство...",
+      "install": "Установить",
+      "installError": "Не удалось установить тулзу",
+      "cancel": "Отмена"
+    },
+    "toolNotFound": "Тулза не найдена",
+    "toolNotFoundDescription": "Запрашиваемая тулза не найдена.",
+    "alreadyInstalledInAllWorkspaces": "Эта тулза уже установлена во всех рабочих пространствах"
+  }
 }

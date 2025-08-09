@@ -5,6 +5,5 @@
   "version": "1.0.0",
   "author": "DevTools Hub",
   "icon": "/assets/tools-icons/uuid-generator.png",
-  "entrypoint": "/tools/uuid-generator/index.html",
-  "category": "development"
+  "entrypoint": "/tools/uuid-generator/index.html"
 }

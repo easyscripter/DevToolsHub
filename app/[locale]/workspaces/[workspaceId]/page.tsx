@@ -3,8 +3,7 @@
 import React from "react";
 import { useParams } from "next/navigation";
 import { useWorkspacesStore } from "@/store/workspaces";
-import { useToolsStore } from "@/store/tools";
-import { useToolInstallation } from "@/hooks";
+import { useToolsManagement } from "@/hooks";
 import InlineEditField from "@/components/inline-edit-field";
 import { useTranslations } from "next-intl";
 import ToolCard from "@/components/tool-card.";
@@ -16,16 +15,14 @@ type WorkspaceParams = {
 export default function Workspace() {
   const { workspaceId } = useParams<WorkspaceParams>();
   const { workspaces, updateWorkspace } = useWorkspacesStore();
-  const { tools } = useToolsStore();
-  const { uninstallTool } = useToolInstallation();
+  const { getToolsForWorkspace, uninstallTool } = useToolsManagement();
   const workspacesTranslations = useTranslations("Workspaces");
+  
   const workspace = workspaces.find(
     (workspace) => workspace.id === workspaceId,
   );
 
-  const installedTools = tools.filter(
-    (tool) => workspace && (tool.workspaceIds || []).includes(workspace.id),
-  );
+  const installedTools = workspace ? getToolsForWorkspace(workspace.id) : [];
 
   const handleUpdateName = (name: string) => {
     if (workspace) {
