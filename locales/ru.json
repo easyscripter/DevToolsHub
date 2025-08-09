@@ -57,6 +57,8 @@
     "uploadTool": "Загрузить тулзу",
     "uploadToolLabel": "Также вы можете загрузить свою тулзу по кнопке ниже",
     "searchToolsPlaceholder": "Поиск тулзов...",
+    "searchToolsNotFound": "Тулзы не найдены по вашему запросу.",
+    "searchToolsNotAvailable": "Нет доступных тулзов",
     "all": "Все",
     "install": "Установить",
     "active": "Активные",
@@ -65,6 +67,7 @@
     "uninstall": "Удалить",
     "noToolsFound": "Тулзы не найдены по вашему запросу.",
     "noToolsYet": "Тулзы еще не загружены. Загрузите свою первую тулзу для начала!",
+    "uploadingTools": "Загрузка тулзов...",
     "uploadToolDialog": {
       "title": "Загрузить тулзу",
       "description": "Загрузите свою тулзу в виде zip файла. Архив должен содержать файлы main.js, manifest.json, readme.md . Архив не должен превышать 10 МБ",
@@ -88,6 +91,7 @@
       "workspaceLabel": "Рабочее пространство",
       "workspacePlaceholder": "Выберите рабочее пространство...",
       "install": "Установить",
+      "installError": "Не удалось установить тулзу",
       "cancel": "Отмена"
     },
     "toolNotFound": "Тулза не найдена",

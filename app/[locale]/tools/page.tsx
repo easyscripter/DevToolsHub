@@ -4,64 +4,36 @@ import { Input } from "@/components/ui/input";
 import { useTranslations } from "next-intl";
 import UploadToolDialog from "@/components/upload-tool-dialog";
 import InstallToolDialog from "@/components/install-tool-dialog";
-import { useEffect, useState } from "react";
-import { useToolsStore } from "@/store/tools";
-import { useToolInstallation } from "@/hooks";
+import { useState } from "react";
+import { useToolsManagement } from "@/hooks";
 import ToolCard from "@/components/tool-card.";
-import { Tool, ToolManifest } from "@/types/tools";
+import { Tool } from "@/types/tools";
 import { Button } from "@/components/ui/button";
 import { Upload } from "lucide-react";
-import { toast } from "sonner";
-import { useGetTools } from "@/queries/useGetTools";
 
 export default function ToolsPage() {
   const toolsTranslations = useTranslations("Tools");
   const [uploadDialogOpen, setUploadDialogOpen] = useState(false);
   const [installDialogOpen, setInstallDialogOpen] = useState(false);
   const [selectedTool, setSelectedTool] = useState<Tool | null>(null);
-  const [isUploadingTool, setIsUploadingTool] = useState(false);
-
-  const tools = useToolsStore((state) => state.tools);
-  const setTools = useToolsStore((state) => state.setTools);
-  const { installTool } = useToolInstallation();
-
-  const { data: toolsData, refetch: refetchTools } = useGetTools();
-
-  useEffect(() => {
-    if (toolsData) {
-      const mappedTools = toolsData.data.map((tool: ToolManifest) => ({
-        manifest: tool,
-        workspaceIds: [],
-      }));
-      const toolsIds = new Set(tools.map((tool) => tool.manifest.id));
-      const newTools = mappedTools.filter(
-        (tool: Tool) => !toolsIds.has(tool.manifest.id),
-      );
-      setTools([...tools, ...newTools]);
-    }
-  }, [toolsData]);
+  const {
+    tools,
+    searchQuery,
+    setSearchQuery,
+    isLoading,
+    uploadTool,
+    installTool,
+    isUploading,
+  } = useToolsManagement();
 
   const handleUpload = async (file: File) => {
-    const formData = new FormData();
-    formData.append("file", file);
-    setIsUploadingTool(true);
-    const response = await fetch("/api/tools/upload", {
-      method: "POST",
-      body: formData,
-    });
-    setIsUploadingTool(false);
-    if (!response.ok) {
-      toast.error(
-        `${toolsTranslations(
-          "uploadToolDialog.uploadError",
-        )} ${response.statusText}`,
-      );
-      return;
+    try {
+      await uploadTool(file);
+      setUploadDialogOpen(false);
+    } catch (error) {
+      // Ошибка уже обработана в хуке
+      console.error('Upload failed:', error);
     }
-
-    toast.success(toolsTranslations("uploadToolDialog.uploadSuccess"));
-    refetchTools();
-    setUploadDialogOpen(false);
   };
 
   const handleInstallClick = (tool: Tool) => {
@@ -72,6 +44,7 @@ export default function ToolsPage() {
   const handleInstall = (workspaceId: string) => {
     if (selectedTool) {
       installTool(selectedTool.manifest.id, workspaceId);
+      setInstallDialogOpen(false);
     }
   };
 
@@ -88,7 +61,11 @@ export default function ToolsPage() {
         </div>
         <div className="flex flex-col gap-8">
           <div className="flex items-center">
-            <Input placeholder={toolsTranslations("searchToolsPlaceholder")} />
+            <Input 
+              placeholder={toolsTranslations("searchToolsPlaceholder")}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
           </div>
           <div className="flex flex-col max-w-md gap-6">
             <p className="text-muted-foreground">
@@ -100,24 +77,39 @@ export default function ToolsPage() {
             </Button>
           </div>
         </div>
-        <div className="flex flex-wrap gap-4">
-          {tools.map((tool) => (
-            <ToolCard
-              key={tool.manifest.id}
-              name={tool.manifest.name}
-              description={tool.manifest.description}
-              iconSrc={tool.manifest.icon}
-              author={tool.manifest.author}
-              onInstall={() => handleInstallClick(tool)}
-              version={tool.manifest.version}
-            />
-          ))}
-        </div>
+        
+        {isLoading ? (
+          <div className="flex justify-center py-8">
+            <div className="text-muted-foreground">{toolsTranslations("uploadingTools")}</div>
+          </div>
+        ) : (
+          <div className="flex flex-wrap gap-4">
+            {tools.length > 0 ? (
+              tools.map((tool) => (
+                <ToolCard
+                  key={tool.manifest.id}
+                  name={tool.manifest.name}
+                  description={tool.manifest.description}
+                  iconSrc={tool.manifest.icon}
+                  author={tool.manifest.author}
+                  onInstall={() => handleInstallClick(tool)}
+                  version={tool.manifest.version}
+                />
+              ))
+            ) : (
+              <div className="text-center py-8 w-full">
+                <p className="text-muted-foreground">
+                  {searchQuery ? toolsTranslations("searchToolsNotFound") : toolsTranslations("searchToolsNotAvailable")}
+                </p>
+              </div>
+            )}
+          </div>
+        )}
       </div>
       <UploadToolDialog
         open={uploadDialogOpen}
         onOpenChange={setUploadDialogOpen}
-        isUploading={isUploadingTool}
+        isUploading={isUploading}
         onUpload={handleUpload}
       />
       <InstallToolDialog

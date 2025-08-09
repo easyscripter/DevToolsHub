@@ -14,6 +14,7 @@ import { Label } from "./ui/label";
 import { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { cn } from "@/lib/utils";
+import { FILE_CONSTRAINTS } from "@/constants";
 
 type UploadToolDialogProps = {
   open: boolean;
@@ -27,7 +28,7 @@ export default function UploadToolDialog({
   open,
   onOpenChange,
   isUploading,
-  maxFileSize = 10 * 1024 * 1024,
+  maxFileSize = FILE_CONSTRAINTS.TOOL_MAX_SIZE,
   onUpload,
 }: UploadToolDialogProps) {
   const toolsTranslations = useTranslations("Tools.uploadToolDialog");
@@ -43,7 +44,7 @@ export default function UploadToolDialog({
     useDropzone({
       onDrop,
       accept: {
-        "application/zip": [".zip"],
+        "application/zip": FILE_CONSTRAINTS.ALLOWED_TOOL_EXTENSIONS,
       },
       maxFiles: 1,
       maxSize: maxFileSize,
